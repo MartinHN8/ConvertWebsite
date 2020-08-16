@@ -8,17 +8,14 @@
     	<h1>Hello there!</h1>
     	<input type="number" min="0" id="valueInput">
 
-        </label>Choose a Unit:</label>
-        <select>
-            <option value="m2">m^2</option>
-            <option value="dm2">dm^2</option>
-            <option value="cm2">cm^2</option>
-            <option value="mm2">mm^2</option>
+        <p>Choose input unit:</p>
+        <select id="IntialUnitSelector">
+            <option>--</option>
         </select>
 
         <p>How many?</p>
-        <select id="unitselecter">
-            <option>Choose type</option>
+        <select id="TargetUnitSelector">
+            <option>--</option>
         </select>
         
     	<p>Press when ready:</p>
@@ -40,11 +37,11 @@
 
     		const SIConversionTable =
     		[
-    			{unitName: "squareMilliMeter", factor: 1/1_000_000},
-    			{unitName: "squareCentiMeter", factor: 1/10_000},
-    			{unitName: "squareMeter", factor: 1},
-    			{unitName: "squareKiloMeter", factor: 1_000_000},
-    			{unitName: "squareFeet", factor: 0.09}
+    			{name: "Square millimeter", unitName: "squareMilliMeter", factor: 1/1_000_000},
+    			{name: "Square centimeter", unitName: "squareCentiMeter", factor: 1/10_000},
+    			{name: "Square meter", unitName: "squareMeter", factor: 1},
+    			{name: "Square kilometer", unitName: "squareKiloMeter", factor: 1_000_000},
+    			{name: "Square feet", unitName: "squareFeet", factor: 0.09}
     		]
 
     		function convertToSI(value, unit)
@@ -69,15 +66,24 @@
     			}
     		}
 
-
-            var unitchooser = document.getElementById("unitselecter");
+            var TargetUnitChooser = document.getElementById("TargetUnitSelector");
             for (var i = 0; i < values.length; i++)
             {
-                var elem = document.createElement("option");
+                var Targetelem = document.createElement("option");
                 var opt = values[i].name;
-                elem.textContent = opt;
-                elem.value = opt;
-                unitchooser.add(elem);
+                Targetelem.textContent = opt;
+                Targetelem.value = opt;
+                TargetUnitChooser.add(Targetelem);
+            }
+
+            var IntialUnitChooser = document.getElementById("IntialUnitSelector")
+            for (var i = 0; i< SIConversionTable.length; i++)
+            {
+                var IntialElem = document.createElement("option");
+                var opt = SIConversionTable[i].name;
+                IntialElem.textContent = opt;
+                IntialElem.value = opt;
+                IntialUnitChooser.add(IntialElem);
             }
     	</script>
 	</body>
