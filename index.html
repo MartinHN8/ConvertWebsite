@@ -9,7 +9,7 @@
     	<input type="number" id="valueInput">
 
         </label>Choose a Unit:</label>
-        <select>
+        <select id="initialUnitSelector">
             <option value="m2">m^2</option>
             <option value="dm2">dm^2</option>
             <option value="cm2">cm^2</option>
@@ -17,12 +17,14 @@
         </select>
 
         <p>How many?</p>
-        <select id="unitselecter">
+        <select id="targetUnitSelector">
             <option>Choose type</option>
         </select>
         
     	<p>Press when ready:</p>
-    	<input type="button" value="Convert" onclick="convertFunction()">
+    	<input type="button" value="Convert" onclick="readConvertWrite()">
+
+    	<p id=finalValue></p>
 
     	<script type="text/javascript">
 
@@ -32,11 +34,6 @@
     			{name: "Central Parks", value: 3_410_000, unitName: "centralPark"},
     			{name: "Queen size beds", value: 2.8, unitName: "queenSizeBed"},
     		];
-
-    		function convertFunction()
-    		{
-    			window.alert(convert(800, "squareFeet", "queenSizeBed"));
-    		}
 
     		const SIConversionTable =
     		[
@@ -69,14 +66,28 @@
     			}
     		}
 
+    		function readConvertWrite()
+    		{
+    			var inputValue = document.getElementById("valueInput").value;
+    			var initialUnit = document.getElementById("initialUnitSelector").value;
+    			var targetUnit = document.getElementById("targetUnitSelector").value;
 
-            var unitchooser = document.getElementById("unitselecter");
+    			var newValue = convert(inputValue, initialUnit, targetUnit);
+
+    			var finalParagraph = document.getElementById("finalValue");
+    			finalParagraph.textContent =
+    				": " +
+    				inputValue + " is " +
+    				newValue + " " +
+    				targetUnit;
+    		}
+
+            var unitchooser = document.getElementById("targetUnitSelector");
             for (var i = 0; i < values.length; i++)
             {
                 var elem = document.createElement("option");
-                var opt = values[i].name;
-                elem.textContent = opt;
-                elem.value = opt;
+                elem.textContent = values[i].name;
+                elem.value = values[i].unitName;
                 unitchooser.add(elem);
             }
     	</script>
