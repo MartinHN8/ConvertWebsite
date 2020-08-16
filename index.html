@@ -2,14 +2,34 @@
 <html>
 	<head>
     	<title>My converting website!</title>
+	</head>
+	<body>
+    	<h1>Hello there!</h1>
+    	<input type="number">
+
+        </label>Choose a Unit:</label>
+        <select>
+            <option value="m2">m^2</option>
+            <option value="dm2">dm^2</option>
+            <option value="cm2">cm^2</option>
+            <option value="mm2">mm^2</option>
+        </select>
+
+        <p>How many?</p>
+        <select id="unitselecter">
+            <option>Choose type</option>
+        </select>
+        
+    	<p>Press when ready:</p>
+    	<input type="button" value="Convert" onclick="convertFunction()">
 
     	<script type="text/javascript">
 
     		const values = 
     		[
-    			{name: "Football field", value: 6_000, unit: "m2"},
-    			{name: "Central Park", value: 3_410_000, unit: "m2"},
-    			{name: "Queen bed", value: 2.8, unit: "m2"},
+    			{name: "Football fields", value: 6_000, unit: "m2"},
+    			{name: "Central Parks", value: 3_410_000, unit: "m2"},
+    			{name: "Queen size beds", value: 2.8, unit: "m2"},
     		];
 
     		function convertFunction()
@@ -17,20 +37,16 @@
     			window.alert(values[1].name);
     		}
 
-    	</script>
-	</head>
-	<body>
-    	<h1>Hello there!</h1>
-    	<input type="number">
-        <label for="cars">Choose a Unit:</label>
+            var unitchooser = document.getElementById("unitselecter");
 
-        <select name="cars" id="cars">
-            <option value="m2">m^2</option>
-            <option value="dm2">dm^2</option>
-            <option value="cm2">cm^2</option>
-            <option value="mm2">mm^2</option>
-        </select>
-    	<p>Press when ready:</p>
-    	<input type="button" value="Convert" onclick="convertFunction()">
+            for (var i = 0; i < values.length; i++)
+            {
+                var elem = document.createElement("option");
+                var opt = values[i].name;
+                elem.textContent = opt;
+                elem.value = opt;
+                unitchooser.add(elem);
+            }
+    	</script>
 	</body>
 </html>
