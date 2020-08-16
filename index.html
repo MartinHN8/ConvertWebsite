@@ -14,7 +14,14 @@
 	<body>
     	<h1>Hello there!</h1>
     	<input type="number">
+        <label for="cars">Choose a Unit:</label>
 
+        <select name="cars" id="cars">
+            <option value="m2">m^2</option>
+            <option value="dm2">dm^2</option>
+            <option value="cm2">cm^2</option>
+            <option value="mm2">mm^2</option>
+        </select>
     	<p>Press when ready:</p>
     	<input type="button" value="Convert" onclick="convertFunction()">
 	</body>
