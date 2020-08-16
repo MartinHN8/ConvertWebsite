@@ -30,9 +30,9 @@
 
     		const values = 
     		[
-    			{name: "Football fields", value: 6_000, unitName: "footballField"},
-    			{name: "Central Parks", value: 3_410_000, unitName: "centralPark"},
-    			{name: "Queen size beds", value: 2.8, unitName: "queenSizeBed"},
+    			{name: "Football fields",   unitName: "footballField",      factor: 6_000},
+    			{name: "Central Parks",     unitName: "centralPark",        factor: 3_410_000},
+    			{name: "Queen size beds",    unitName: "queenSizeBed",      factor: 2.8},
     		];
 
     		function convertFunction()
@@ -42,11 +42,11 @@
 
     		const SIConversionTable =
     		[
-    			{name: "Square millimeter", unitName: "squareMilliMeter", factor: 1/1_000_000},
-    			{name: "Square centimeter", unitName: "squareCentiMeter", factor: 1/10_000},
-    			{name: "Square meter", unitName: "squareMeter", factor: 1},
-    			{name: "Square kilometer", unitName: "squareKiloMeter", factor: 1_000_000},
-    			{name: "Square feet", unitName: "squareFeet", factor: 0.09}
+    			{name: "Square millimeter", unitName: "squareMilliMeter",   factor: 1/1_000_000},
+    			{name: "Square centimeter", unitName: "squareCentiMeter",   factor: 1/10_000},
+    			{name: "Square meter",      unitName: "squareMeter",        factor: 1},
+    			{name: "Square kilometer",  unitName: "squareKiloMeter",    factor: 1_000_000},
+    			{name: "Square feet",       unitName: "squareFeet",         factor: 0.09}
     		]
 
     		function convertToSI(value, unit)
@@ -66,7 +66,7 @@
     			{
     				if(values[i].unitName == targetUnit)
     				{
-    					return convertToSI(value, originalUnit) / values[i].value;
+    					return convertToSI(value, originalUnit) / values[i].factor;
     				}
     			}
     		}
