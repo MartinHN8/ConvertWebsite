@@ -6,7 +6,7 @@
 	</head>
 	<body>
     	<h1>Hello there!</h1>
-    	<input type="number">
+    	<input type="number" id="valueInput">
 
         </label>Choose a Unit:</label>
         <select>
@@ -35,11 +35,10 @@
 
     		function convertFunction()
     		{
-    			window.alert(values[1].name);
+    			window.alert(document.getElementById("valueInput").value);
     		}
 
             var unitchooser = document.getElementById("unitselecter");
-
             for (var i = 0; i < values.length; i++)
             {
                 var elem = document.createElement("option");
