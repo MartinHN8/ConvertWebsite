@@ -28,15 +28,47 @@
 
     		const values = 
     		[
-    			{name: "Football fields", value: 6_000, unit: "m2"},
-    			{name: "Central Parks", value: 3_410_000, unit: "m2"},
-    			{name: "Queen size beds", value: 2.8, unit: "m2"},
+    			{name: "Football fields", value: 6_000, unitName: "footballField"},
+    			{name: "Central Parks", value: 3_410_000, unitName: "centralPark"},
+    			{name: "Queen size beds", value: 2.8, unitName: "queenSizeBed"},
     		];
 
     		function convertFunction()
     		{
-    			window.alert(document.getElementById("valueInput").value);
+    			window.alert(convert(800, "squareFeet", "queenSizeBed"));
     		}
+
+    		const SIConversionTable =
+    		[
+    			{unitName: "squareMilliMeter", factor: 1/1_000_000},
+    			{unitName: "squareCentiMeter", factor: 1/10_000},
+    			{unitName: "squareMeter", factor: 1},
+    			{unitName: "squareKiloMeter", factor: 1_000_000},
+    			{unitName: "squareFeet", factor: 0.09}
+    		]
+
+    		function convertToSI(value, unit)
+    		{
+    			for(var i = 0; i < SIConversionTable.length; i++)
+    			{
+    				if(SIConversionTable[i].unitName == unit)
+    				{
+    					return value * SIConversionTable[i].factor
+    				} 
+    			}
+    		}
+
+    		function convert(value, originalUnit, targetUnit)
+    		{
+    			for(var i = 0; i < values.length; i++)
+    			{
+    				if(values[i].unitName == targetUnit)
+    				{
+    					return convertToSI(value, originalUnit) / values[i].value;
+    				}
+    			}
+    		}
+
 
             var unitchooser = document.getElementById("unitselecter");
             for (var i = 0; i < values.length; i++)
