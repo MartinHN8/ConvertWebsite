@@ -6,19 +6,16 @@
 	</head>
 	<body>
     	<h1>Hello there!</h1>
-    	<input type="number" id="valueInput">
+    	<input type="number" min="0" id="valueInput">
 
-        </label>Choose a Unit:</label>
+        <p>Choose input unit:</p>
         <select id="initialUnitSelector">
-            <option value="m2">m^2</option>
-            <option value="dm2">dm^2</option>
-            <option value="cm2">cm^2</option>
-            <option value="mm2">mm^2</option>
+            <option>--</option>
         </select>
 
         <p>How many?</p>
         <select id="targetUnitSelector">
-            <option>Choose type</option>
+            <option>--</option>
         </select>
         
     	<p>Press when ready:</p>
@@ -37,11 +34,11 @@
 
     		const SIConversionTable =
     		[
-    			{unitName: "squareMilliMeter", factor: 1/1_000_000},
-    			{unitName: "squareCentiMeter", factor: 1/10_000},
-    			{unitName: "squareMeter", factor: 1},
-    			{unitName: "squareKiloMeter", factor: 1_000_000},
-    			{unitName: "squareFeet", factor: 0.09}
+    			{name: "Square millimeter", unitName: "squareMilliMeter", factor: 1/1_000_000},
+    			{name: "Square centimeter", unitName: "squareCentiMeter", factor: 1/10_000},
+    			{name: "Square meter", unitName: "squareMeter", factor: 1},
+    			{name: "Square kilometer", unitName: "squareKiloMeter", factor: 1_000_000},
+    			{name: "Square feet", unitName: "squareFeet", factor: 0.09}
     		]
 
     		function convertToSI(value, unit)
@@ -76,19 +73,27 @@
 
     			var finalParagraph = document.getElementById("finalValue");
     			finalParagraph.textContent =
-    				": " +
-    				inputValue + " is " +
-    				newValue + " " +
-    				targetUnit;
+    				inputValue + " " + initialUnit + "s is " +
+    				Math.round(newValue) + " " + targetUnit + "s";
     		}
 
-            var unitchooser = document.getElementById("targetUnitSelector");
+
+            var TargetUnitChooser = document.getElementById("targetUnitSelector");
             for (var i = 0; i < values.length; i++)
             {
-                var elem = document.createElement("option");
-                elem.textContent = values[i].name;
-                elem.value = values[i].unitName;
-                unitchooser.add(elem);
+                var Targetelem = document.createElement("option");
+                Targetelem.textContent = values[i].name;
+                Targetelem.value = values[i].unitName;
+                TargetUnitChooser.add(Targetelem);
+            }
+
+            var IntialUnitChooser = document.getElementById("initialUnitSelector")
+            for (var i = 0; i< SIConversionTable.length; i++)
+            {
+                var IntialElem = document.createElement("option");
+                IntialElem.textContent = SIConversionTable[i].name;
+                IntialElem.value = SIConversionTable[i].unitName;
+                IntialUnitChooser.add(IntialElem);
             }
     	</script>
 	</body>
